@@ -1,16 +1,40 @@
-import React, { Component, fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../App.css';
 import { Header, Footer } from './Layouts';
 import Exercises from './Exercises';
+import { muscles, exercises } from '../store.js'
 
 export default class extends Component {
+  state = {
+    exercises
+  }
+
+  getExercisesByMuscles() {
+  return Object.entries(
+    this.state.exercises.reduce((exercises, exercise) => {
+      const { muscles } = exercise
+
+      exercises[muscles] = exercises[muscles]
+        ? [...exercises[muscles], exercise]
+        : [exercise]
+
+      return exercises
+    }, {})
+  )
+}
+
   render() {
-    return <fragment>
+    const exercises = this.getExercisesByMuscles()
+    return <Fragment>
         <Header />
 
-        <Exercises />
+        <Exercises
+          exercises={exercises}
+        />
 
-        <Footer />
-      </fragment>
+        <Footer
+          muscles={muscles}
+        />
+      </Fragment>
   }
 }
