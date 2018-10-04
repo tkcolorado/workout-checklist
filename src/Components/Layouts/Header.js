@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, ToolBar, Typography } from '@material-ui/core';
+import { AppBar, Typography } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 
 export default props =>
