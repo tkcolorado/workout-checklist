@@ -6,10 +6,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+
 
 export default class extends Component {
   state = {
-    open: false
+    open: false,
+  exercise: {
+      title: '',
+      description: '',
+      muscles: '',
+    }
   }
 
   handleToggle = () => {
@@ -18,8 +25,18 @@ export default class extends Component {
     })
   }
 
+  handleChange = name => ({ target: { value } }) => {
+    this.setState({
+      exercise: {
+        ...this.state.exercise,
+        [name]: value
+      }
+    })
+  }
+
+
   render() {
-    const { open } = this.state
+    const { open, exercise: { title, description, muscles }} = this.state
 
     return <Fragment>
        <Button variant="fab" onClick={this.handleToggle} mini>
@@ -38,6 +55,15 @@ export default class extends Component {
              please fill out the form below
            </DialogContentText>
            <form>
+           <TextField
+             multiline
+             rows="4"
+             label="Description"
+             value={description}
+             onChange={this.handleChange('description')}
+             margin="normal"
+           />
+           <br/>
            </form>
          </DialogContent>
          <DialogActions>
