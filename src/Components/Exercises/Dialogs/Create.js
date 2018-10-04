@@ -7,7 +7,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-
+//Native select
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 export default class extends Component {
   state = {
@@ -36,7 +40,8 @@ export default class extends Component {
 
 
   render() {
-    const { open, exercise: { title, description, muscles }} = this.state
+    const { open, exercise: { title, description, muscles }} = this.state,
+          { muscles: categories } = this.props
 
     return <Fragment>
        <Button variant="fab" onClick={this.handleToggle} mini>
@@ -55,6 +60,30 @@ export default class extends Component {
              please fill out the form below
            </DialogContentText>
            <form>
+           <TextField
+             label="Title"
+             value={title}
+             onChange={this.handleChange('title')}
+             margin="normal"
+           />
+           <br/>
+           <FormControl>
+          <InputLabel htmlFor="muscles">
+            Muscles
+          </InputLabel>
+          <Select
+            native
+            value={muscles}
+            onChange={this.handleChange('muscles')}
+          >
+            {categories.map(category =>
+              <option value={category}>
+                {category}
+              </option>
+            )}
+          </Select>
+        </FormControl>
+           <br/>
            <TextField
              multiline
              rows="4"

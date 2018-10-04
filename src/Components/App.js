@@ -41,7 +41,9 @@ handleExerciseSelected = id => {
       { category, exercise } = this.state
 
     return <Fragment>
-        <Header />
+        <Header
+          muscles={muscles}
+        />
 
         <Exercises
           exercise={exercise}
