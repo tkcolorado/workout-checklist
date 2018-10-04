@@ -1,5 +1,5 @@
 export const muscles = [
-  'shoulders','chest','arms','back','legs'
+  'shoulders', 'chest', 'arms', 'back', 'legs'
 ]
 
 export const exercises = [
