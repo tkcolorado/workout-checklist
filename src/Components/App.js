@@ -50,10 +50,10 @@ handleExerciseCreate = exercise =>
   }))
 
 handleExerciseDelete = id =>
-  this.setState(({ exercises }) => ({
+  this.setState(({ exercises, exercise, editMode }) => ({
     exercises: exercises.filter(ex => ex.id !== id),
-    editMode: false,
-    exercise: {}
+    editMode: exercise.id === id ? false : editMode,
+    exercise: exercise.id === id ? {} : exercise
   }))
 
 handleExerciseSelectEdit = id =>
