@@ -39,6 +39,8 @@ handleFormSubmit = exercise => {
       <Dialog
          open={open}
          onClose={this.handleToggle}
+         fullWidth
+         maxWidth='xs'
        >
          <DialogTitle>
            Create a new exercise

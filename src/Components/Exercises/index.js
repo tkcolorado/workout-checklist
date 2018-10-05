@@ -74,26 +74,24 @@ export default withStyles(styles)(
      </Grid>
      <Grid item xs={12} sm={6}>
        <Paper className={classes.Paper}>
+         <Typography
+           variant="display1"
+           guttorBottom
+         >
+           {title}
+         </Typography>
         (editMode
           ? <Form
+            key={id}
             exercise={exercise}
             muscles={muscles}
             onSubmit={onEdit}
-            />
-          | <Fragment>
-          <Typography
-            variant="display1"
-          >
-            {title}
-          </Typography>
+            />      
           <Typography
             variant="subheading"
-            style={{marginTop: 20}}
           >
             {description}
           </Typography>
-
-          </Fragment>
         )
        </Paper>
      </Grid>
