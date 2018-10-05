@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import '../App.css';
 import { Header, Footer } from './Layouts';
 import Exercises from './Exercises';
-import { muscles, exercises } from '../store.js'
+import { muscles, exercises } from '../store.js';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class extends Component {
   state = {
@@ -76,6 +77,7 @@ handleExerciseSelectEdit = id =>
       { category, exercise, editMode } = this.state
 
     return <Fragment>
+        <CssBaseline />
         <Header
           muscles={muscles}
           onExerciseCreate={this.handleExerciseCreate}

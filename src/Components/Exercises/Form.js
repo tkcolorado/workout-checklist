@@ -7,9 +7,9 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => console.log(theme) || ({
+const styles = theme => ({
   FormControl: {
-    width: 300
+    width: 250
   }
 })
 
