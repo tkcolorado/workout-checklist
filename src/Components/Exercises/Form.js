@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   FormControl: {
-    width: 100
+    width: 300
   }
 })
 
@@ -26,34 +26,32 @@ export default withStyles(styles)(class extends Component {
     }
   }
 
-  handleChange = name => ({ target: { value } }) =>
+  componentWillReceiveProps({ exercise }) {
     this.setState({
-        [name]: value
-    })
-
-  handleSubmit = () => {
-    // todo: validate
-
-    const { exercise } = this.state
-
-    this.props.onSubmit({
-      ...exercise,
-      id: exercise.title.toLocaleLowerCase().replace(/ /g, '-')
-    })
-
-    this.setState({
-      open: false,
-      exercise: {
-        title: '',
-        description: '',
-        muscles: ''
-      }
+      ...exercise
     })
   }
 
+  handleChange = name => ({ target: { value } }) =>
+    this.setState({
+      [name]: value
+    })
+
+
+    handleSubmit = () => {
+      // TODO: validate
+
+      this.props.onSubmit({
+        id: this.state.title.toLocaleLowerCase().replace(/ /g, '-'),
+        ...this.state
+      })
+
+      this.setState(this.getInitState())
+    }
+
   render() {
     const { title, description, muscles } = this.state,
-          { classes, muscles: categories } = this.props
+          { classes, exercise, muscles: categories } = this.props
 
     return <form>
     <TextField
@@ -96,7 +94,7 @@ export default withStyles(styles)(class extends Component {
       variant="raised"
       onClick={this.handleSubmit}
     >
-      Create
+      {exercise ? 'Edit' : 'Create'}
     </Button>
 
     </form>

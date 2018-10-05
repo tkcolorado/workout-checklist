@@ -37,7 +37,8 @@ handleCategorySelect = category =>
 
 handleExerciseSelect = id =>
   this.setState(({ exercises }) => ({
-    exercise: exercises.find(ex => ex.id === id)
+    exercise: exercises.find(ex => ex.id === id),
+    editMode: false
   }))
 
 handleExerciseCreate = exercise =>
@@ -50,7 +51,9 @@ handleExerciseCreate = exercise =>
 
 handleExerciseDelete = id =>
   this.setState(({ exercises }) => ({
-    exercises: exercises.filter(ex => ex.id !== id)
+    exercises: exercises.filter(ex => ex.id !== id),
+    editMode: false,
+    exercise: {}
   }))
 
 handleExerciseSelectEdit = id =>
@@ -64,7 +67,8 @@ handleExerciseSelectEdit = id =>
       exercises: [
          ...exercises.filter(ex => ex.id !== exercise.id),
          exercise
-      ]
+      ],
+      exercise
     }))
 
   render() {
