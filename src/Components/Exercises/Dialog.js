@@ -32,7 +32,12 @@ handleFormSubmit = exercise => {
           { muscles } = this.props
 
     return <Fragment>
-       <Button variant="fab" onClick={this.handleToggle} mini>
+       <Button
+          variant="fab"
+          onClick={this.handleToggle}
+          color='secondary'
+          mini
+        >
          <Add/>
        </Button>
 
