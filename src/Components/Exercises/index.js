@@ -5,93 +5,97 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Edit, Delete } from '@material-ui/icons';
-import Form from './Form'
+import Form from './Form';
+import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+// inline style
+const styles = theme => ({
   Paper: {
     padding: 20,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
     height: 500,
     overflow: 'auto'
   }
-}
+})
 
-export default ({
-  muscles,
-  exercises,
-  category,
-  editMode,
-  onSelect,
-  exercise,
-  exercise: {
-    id,
-    title = 'welcome',
-    description = "please select an exercise from the list on the left."
-  },
-  onDelete,
-  onSelectEdit,
-  onEdit
-  }) =>
-  <Grid container>
-   <Grid item sm>
-     <Paper style={styles.Paper}>
-       {exercises.map(([group, exercises]) =>
-         !category || category === group
-           ? <Fragment key={group}>
-               <Typography
-                 variant="headline"
-                 style={{ textTransform: 'capitalize' }}
-               >
-                 {group}
-               </Typography>
-               <List component="ul">
-                 {exercises.map(({ id, title }) =>
-                   <ListItem
-                     key={id}
-                     button
-                     onClick={() => onSelect(id)}
-                   >
-                     <ListItemText primary={title} />
-                     <ListItemSecondaryAction>
-                       <IconButton onClick={() => onSelectEdit(id)}>
-                        <Edit />
-                       </IconButton>
-                       <IconButton onClick={() => onDelete(id)}>
-                        <Delete/>
-                       </IconButton>
-                     </ListItemSecondaryAction>
-                   </ListItem>
-                 )}
-               </List>
-             </Fragment>
-           : null
-       )}
-     </Paper>
-   </Grid>
-   <Grid item sm>
-     <Paper style={styles.Paper}>
-      (editMode
-        ? <Form
-          exercise={exercise}
-          muscles={muscles}
-          onSubmit={onEdit}
-          />
-        | <Fragment>
-        <Typography
-          variant="display1"
-        >
-          {title}
-        </Typography>
-        <Typography
-          variant="subheading"
-          style={{marginTop: 20}}
-        >
-          {description}
-        </Typography>
+export default withStyles(styles)(
+  ({
+    classes,
+    muscles,
+    exercises,
+    category,
+    editMode,
+    onSelect,
+    exercise,
+    exercise: {
+      id,
+      title = 'welcome',
+      description = "please select an exercise from the list on the left."
+    },
+    onDelete,
+    onSelectEdit,
+    onEdit
+    }) =>
+    <Grid container>
+     <Grid item xs={12} sm={6}>
+       <Paper className={classes.Paper}>
+         {exercises.map(([group, exercises]) =>
+           !category || category === group
+             ? <Fragment key={group}>
+                 <Typography
+                   variant="headline"
+                   style={{ textTransform: 'capitalize' }}
+                 >
+                   {group}
+                 </Typography>
+                 <List component="ul">
+                   {exercises.map(({ id, title }) =>
+                     <ListItem
+                       key={id}
+                       button
+                       onClick={() => onSelect(id)}
+                     >
+                       <ListItemText primary={title} />
+                       <ListItemSecondaryAction>
+                         <IconButton onClick={() => onSelectEdit(id)}>
+                          <Edit />
+                         </IconButton>
+                         <IconButton onClick={() => onDelete(id)}>
+                          <Delete/>
+                         </IconButton>
+                       </ListItemSecondaryAction>
+                     </ListItem>
+                   )}
+                 </List>
+               </Fragment>
+             : null
+         )}
+       </Paper>
+     </Grid>
+     <Grid item xs={12} sm={6}>
+       <Paper className={classes.Paper}>
+        (editMode
+          ? <Form
+            exercise={exercise}
+            muscles={muscles}
+            onSubmit={onEdit}
+            />
+          | <Fragment>
+          <Typography
+            variant="display1"
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="subheading"
+            style={{marginTop: 20}}
+          >
+            {description}
+          </Typography>
 
-        </Fragment>
-      )
-     </Paper>
+          </Fragment>
+        )
+       </Paper>
+     </Grid>
    </Grid>
- </Grid>
+)
