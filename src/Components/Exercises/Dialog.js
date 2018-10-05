@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 //Native select
-import Form from './form'
+import Form from './Form'
 
 export default class extends Component {
   state = {
