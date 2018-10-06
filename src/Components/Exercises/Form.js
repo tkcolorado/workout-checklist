@@ -95,7 +95,6 @@ export default class extends Component {
     >
       {exercise ? 'Edit' : 'Create'}
     </Button>
-
     </form>
   }
 }
