@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { AppBar, Paper, Tabs } from '@material-ui/core'
+import React, { Component } from 'react';
+import { AppBar, Paper, Tabs } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 import withWidth from '@material-ui/core/withWidth';
 import { withContext } from '../../context'
@@ -16,9 +16,12 @@ class Footer extends Component {
       ? muscles.findIndex(group => group === category) + 1
       : 0
     }
+
     render () {
       const { width, muscles } = this.props
-      return (<AppBar position= 'static'>
+
+      return (
+        <AppBar position='static'>
         <Tabs
           value={this.getIndex()}
           onChange={this.onIndexSelect}
@@ -33,8 +36,9 @@ class Footer extends Component {
             <Tab key={group} label={group} />
           )}
         </Tabs>
-       </AppBar>)
+       </AppBar>
+     )
     }
 }
 
-export default withWidth(withWidth()(Footer))
+export default withContext(withWidth()(Footer))
