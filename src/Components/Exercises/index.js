@@ -102,12 +102,13 @@ const Exercises =
          <Typography
            variant="display1"
            color='secondary'
-           guttorBottom
+           gutterBottom
          >
            {title}
          </Typography>
         (editMode
-          ? <Form
+          ? 
+          <Form
             key={id}
             exercise={exercise}
             muscles={muscles}
@@ -118,7 +119,6 @@ const Exercises =
           >
             {description}
           </Typography>
-        )
        </Paper>
      </Grid>
    </Grid>
